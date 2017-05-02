@@ -44,14 +44,14 @@ void TerrainGenerator::GenerateTerrain(int seed)
 {
   m_perlinNoise.SetSeed(seed);
 
-  m_perlinNoise.SetFrequency(0.8);        // How jagged the terrain is
+  m_perlinNoise.SetFrequency(4);        // How jagged the terrain is
 
   m_perlinNoise.SetLacunarity(1);       // How much extra random bits
   m_perlinNoise.SetPersistence(0.5);
 
   m_perlinNoise.SetOctaveCount(6);
 
-  float noiseScale = 10;
+  float noiseScale = 55;
 
   for (int y = 0; y < m_mapHeight; y++)
   {
@@ -59,19 +59,23 @@ void TerrainGenerator::GenerateTerrain(int seed)
     {
       float normalised = (m_perlinNoise.GetValue((float)x / noiseScale, (float)y / noiseScale, 0) + 1) / 2;
 
-      if (normalised > 0.9)
+      if (normalised > 1)
+      {
+        m_terrain.push_back(5);
+      }
+      else if (normalised > 0.9)
       {
         m_terrain.push_back(4);
       }
-      else if (normalised > 0.7)
+      else if (normalised > 0.5)
       {
         m_terrain.push_back(3);
       }
-      else if (normalised > 0.5)
+      else if (normalised > 0.45)
       {
         m_terrain.push_back(2);
       }
-      else if (normalised > 0.3)
+      else if(normalised > 0.32)
       {
         m_terrain.push_back(1);
       }
@@ -111,19 +115,23 @@ void TerrainGenerator::GenerateTexture()
       }
       else if (m_terrain[index(x, y)] == 1)
       {
-        col = sf::Color(0, 206, 44);
+        col = sf::Color(0, 33, 226);
       }
       else if (m_terrain[index(x, y)] == 2)
       {
-        col = sf::Color(16, 183, 11);
+        col = sf::Color(200, 200, 44);
       }
       else if (m_terrain[index(x, y)] == 3)
       {
-        col = sf::Color(9, 76, 63);
+        col = sf::Color(16, 183, 11);
       }
       else if (m_terrain[index(x, y)] == 4)
       {
-        col = sf::Color(126, 130, 129);
+        col = sf::Color(9, 76, 63);
+      }
+      else if (m_terrain[index(x, y)] == 5)
+      {
+        col = sf::Color(255, 255, 255);
       }
 
       sf::Vector2f position;
@@ -138,7 +146,7 @@ void TerrainGenerator::GenerateTexture()
       hex.setFillColor(col);
 
       hex.setOutlineColor(sf::Color::White);
-      hex.setOutlineThickness(1);
+      //hex.setOutlineThickness(1);
 
       m_mapTexture.draw(hex);
     }
