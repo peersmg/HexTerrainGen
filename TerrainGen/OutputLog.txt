@@ -3,102 +3,50 @@
 [00:00:00]	Message: Loading Default Scene...
 [00:00:00]	Message: Menu Started
 [00:00:00]	Message: Menu Finished Starting
-[00:00:08]	Message: Button Pressed
-[00:00:08]	Message: Setting new scene
-[00:00:08]	Message: Loading Terrain sandbox...
-[00:00:08]	Message: 1.003739
-[00:00:08]	Message: 1.014518
-[00:00:08]	Message: 1.014067
-[00:00:08]	Message: 1.001589
-[00:00:08]	Message: 1.002208
-[00:00:08]	Message: 1.032629
-[00:00:08]	Message: 1.053669
-[00:00:08]	Message: 1.063693
-[00:00:08]	Message: 1.061572
-[00:00:08]	Message: 1.046678
-[00:00:08]	Message: 1.018884
-[00:00:08]	Message: 1.009834
-[00:00:08]	Message: 1.037549
-[00:00:08]	Message: 1.043966
-[00:00:08]	Message: 1.029038
-[00:00:08]	Message: 1.026744
-[00:00:08]	Message: 1.059431
-[00:00:08]	Message: 1.081633
-[00:00:08]	Message: 1.091834
-[00:00:08]	Message: 1.089038
-[00:00:08]	Message: 1.072765
-[00:00:08]	Message: 1.043050
-[00:00:08]	Message: 1.000449
-[00:00:08]	Message: 1.013928
-[00:00:08]	Message: 1.059356
-[00:00:08]	Message: 1.083025
-[00:00:08]	Message: 1.084279
-[00:00:08]	Message: 1.063279
-[00:00:08]	Message: 1.021001
-[00:00:08]	Message: 1.026812
-[00:00:08]	Message: 1.062427
-[00:00:08]	Message: 1.086577
-[00:00:08]	Message: 1.097842
-[00:00:08]	Message: 1.095337
-[00:00:08]	Message: 1.078704
-[00:00:08]	Message: 1.048120
-[00:00:08]	Message: 1.004292
-[00:00:08]	Message: 1.053154
-[00:00:08]	Message: 1.094763
-[00:00:08]	Message: 1.113421
-[00:00:08]	Message: 1.108640
-[00:00:08]	Message: 1.080803
-[00:00:08]	Message: 1.031155
-[00:00:08]	Message: 1.002438
-[00:00:08]	Message: 1.041537
-[00:00:08]	Message: 1.068327
-[00:00:08]	Message: 1.081462
-[00:00:08]	Message: 1.080142
-[00:00:08]	Message: 1.064111
-[00:00:08]	Message: 1.033659
-[00:00:08]	Message: 1.016493
-[00:00:08]	Message: 1.017488
-[00:00:08]	Message: 1.018284
-[00:00:08]	Message: 1.077982
-[00:00:08]	Message: 1.114858
-[00:00:08]	Message: 1.127691
-[00:00:08]	Message: 1.116175
-[00:00:08]	Message: 1.080919
-[00:00:08]	Message: 1.023449
-[00:00:08]	Message: 1.027591
-[00:00:08]	Message: 1.043283
-[00:00:08]	Message: 1.043935
-[00:00:08]	Message: 1.029366
-[00:00:08]	Message: 1.021509
-[00:00:08]	Message: 1.036352
-[00:00:08]	Message: 1.029837
-[00:00:08]	Message: 1.001228
-[00:00:08]	Message: 1.032129
-[00:00:08]	Message: 1.087464
-[00:00:08]	Message: 1.118867
-[00:00:08]	Message: 1.125257
-[00:00:08]	Message: 1.106516
-[00:00:08]	Message: 1.063486
-[00:00:08]	Message: 1.029482
-[00:00:08]	Message: 1.039266
-[00:00:08]	Message: 1.025965
-[00:00:08]	Message: 1.030716
-[00:00:08]	Message: 1.081027
-[00:00:08]	Message: 1.106432
-[00:00:08]	Message: 1.106002
-[00:00:08]	Message: 1.079806
-[00:00:08]	Message: 1.028914
-[00:00:08]	Message: 1.020734
-[00:00:08]	Message: 1.026323
-[00:00:08]	Message: 1.007309
-[00:00:08]	Message: 1.013608
-[00:00:08]	Message: 1.058468
-[00:00:08]	Message: 1.077617
-[00:00:08]	Message: 1.070277
-[00:00:08]	Message: 1.036697
-[00:00:08]	Message: 1.019960
-[00:00:08]	Message: 1.032907
-[00:00:08]	Message: 1.018897
-[00:00:08]	Message: 16384
-[00:00:08]	Message: Active is false unload scene
-[00:00:08]	Message: Unloading scene...
+[00:00:04]	Message: Button Pressed
+[00:00:04]	Message: Setting new scene
+[00:00:04]	Message: Loading Terrain sandbox...
+[00:00:04]	Message: -0.000000
+[00:00:06]	Message: 16384
+[00:00:06]	Message: Active is false unload scene
+[00:00:06]	Message: Unloading scene...
+[00:00:09]	Message: Setting new scene
+[00:00:09]	Message: Loading Default Scene...
+[00:00:09]	Message: Menu Started
+[00:00:09]	Message: Menu Finished Starting
+[00:00:09]	ERROR: Cant set camera, camera does not exist!
+[00:00:09]	Message: Active is false unload scene
+[00:00:09]	Message: Unloading scene...
+[00:00:11]	Message: Button Pressed
+[00:00:11]	Message: Setting new scene
+[00:00:11]	Message: Loading Terrain sandbox...
+[00:00:11]	Message: 16384
+[00:00:11]	Message: Active is false unload scene
+[00:00:11]	Message: Unloading scene...
+[00:00:12]	Message: Setting new scene
+[00:00:12]	Message: Loading Default Scene...
+[00:00:12]	Message: Menu Started
+[00:00:12]	Message: Menu Finished Starting
+[00:00:12]	ERROR: Cant set camera, camera does not exist!
+[00:00:12]	Message: Active is false unload scene
+[00:00:12]	Message: Unloading scene...
+[00:00:18]	Message: Button Pressed
+[00:00:18]	Message: Setting new scene
+[00:00:18]	Message: Loading Terrain sandbox...
+[00:00:20]	Message: 16384
+[00:00:20]	Message: Active is false unload scene
+[00:00:20]	Message: Unloading scene...
+[00:00:21]	Message: Setting new scene
+[00:00:21]	Message: Loading Default Scene...
+[00:00:21]	Message: Menu Started
+[00:00:21]	Message: Menu Finished Starting
+[00:00:21]	ERROR: Cant set camera, camera does not exist!
+[00:00:21]	Message: Active is false unload scene
+[00:00:21]	Message: Unloading scene...
+[00:00:29]	Message: Button Pressed
+[00:00:29]	Message: Setting new scene
+[00:00:29]	Message: Loading Terrain sandbox...
+[00:00:29]	Message: -0.000000
+[00:00:30]	Message: 16384
+[00:00:30]	Message: Active is false unload scene
+[00:00:30]	Message: Unloading scene...

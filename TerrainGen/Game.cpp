@@ -27,7 +27,7 @@ void Game::Start()
     return;
   }
 
-  m_mainWindow = new Window("Game Title", sf::Vector2i(1228, 768), false);
+  m_mainWindow = new Window("Game Title", sf::Vector2i(1228, 768), false, sf::Color(0, 13, 206));
   m_mainWindow->GetRenderWindow()->setIcon(sfml_icon.width, sfml_icon.height, sfml_icon.pixel_data);
 
 //#ifndef NDEBUG

@@ -46,41 +46,59 @@ void TerrainGenerator::GenerateTerrain(int seed)
 {
   m_perlinNoise.SetSeed(seed);
 
-  m_perlinNoise.SetFrequency(1);        // How jagged the terrain is
+  m_perlinNoise.SetFrequency(1.5);        // How jagged the terrain is
 
   m_perlinNoise.SetLacunarity(1);       // How much extra random bits
   m_perlinNoise.SetPersistence(0.5);
 
   m_perlinNoise.SetOctaveCount(6);
 
-  float noiseScale = 20;
+  float noiseScale = 30;
+
+  float maxValue = -100;
+  float minValue = 100;
 
   for (int y = 0; y < m_mapHeight; y++)
   {
     for (int x = 0; x < m_mapWidth; x++)
     {
-      float normalised = (m_perlinNoise.GetValue((float)x / noiseScale, (float)y / noiseScale, 0) + 1) / 2;
+      if (m_perlinNoise.GetValue((float)x / noiseScale, (float)y / noiseScale, 0) < minValue)
+      {
+        minValue = m_perlinNoise.GetValue((float)x / noiseScale, (float)y / noiseScale, 0);
+      }
+      else if (m_perlinNoise.GetValue((float)x / noiseScale, (float)y / noiseScale, 0) > maxValue)
+      {
+        maxValue = m_perlinNoise.GetValue((float)x / noiseScale, (float)y / noiseScale, 0);
+      }
+    }
+  }
 
-	  if (normalised > 1)
-		  OutputLog::GetInstance().AddLine(std::to_string(m_perlinNoise.GetValue((float)x / noiseScale, (float)y / noiseScale, 0)));
+  for (int y = 0; y < m_mapHeight; y++)
+  {
+    for (int x = 0; x < m_mapWidth; x++)
+    {
+      float resultVal = 0 + ((1 - 0) / (maxValue - minValue)) * (m_perlinNoise.GetValue((float)x / noiseScale, (float)y / noiseScale, 0) - minValue);
 
-      if (normalised > 1.1)
+      if (resultVal > 1 || resultVal < 0)
+        OutputLog::GetInstance().AddLine(std::to_string(resultVal));
+
+      if (resultVal > 0.9)
       {
         m_terrain.push_back(5);
       }
-      else if (normalised > 0.9)
+      else if (resultVal > 0.8)
       {
         m_terrain.push_back(4);
       }
-      else if (normalised > 0.5)
+      else if (resultVal > 0.5)
       {
         m_terrain.push_back(3);
       }
-      else if (normalised > 0.45)
+      else if (resultVal > 0.45)
       {
         m_terrain.push_back(2);
       }
-      else if(normalised > 0.32)
+      else if (resultVal > 0.4)
       {
         m_terrain.push_back(1);
       }
@@ -106,7 +124,7 @@ void TerrainGenerator::GenerateTexture()
   sf::Vector2i mapSize = HexMath::GetMapSize(m_hexRadius, m_mapWidth, m_mapHeight);
   m_mapTexture.create(mapSize.x, mapSize.y);
 
-  m_mapTexture.clear(sf::Color::Red);
+  //m_mapTexture.clear(sf::Color::Red);
 
   sf::Color col = sf::Color::Red;
 
