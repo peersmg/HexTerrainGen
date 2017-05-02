@@ -144,16 +144,21 @@ void InputManager::ClearKeyStates()
   }
 }
 
-sf::Vector2i InputManager::GetMousePosition(int camera)
+sf::Vector2i InputManager::GetMousePosition(int camera, bool fromCamera)
 {
   // The position of the mouse on the screen
   sf::Vector2i pixelPos = sf::Mouse::getPosition(*Game::instance.GetWindow()->GetRenderWindow());
 
   Game::instance.GetWindow()->SetCamera(camera);
   // The reletive position of the mouse in the game
-  return (sf::Vector2i)Game::instance.GetWindow()->GetRenderWindow()->mapPixelToCoords(pixelPos);
-
-  //return pixelPos;
+  if (fromCamera)
+  {
+    return (sf::Vector2i)Game::instance.GetWindow()->GetRenderWindow()->mapPixelToCoords(pixelPos);
+  }
+  else
+  {
+    return pixelPos;
+  }
 }
 
 void InputManager::AddAction(std::string action, sf::Keyboard::Key key)

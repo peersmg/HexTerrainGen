@@ -18,12 +18,13 @@ const bool bMapCamera = ObjectFactory::GetInstance().Register("MapCamera", Creat
 
 MapCamera::MapCamera(InitialisationData data)
 {
-  m_camera = new CCamera(this, Game::instance.GetWindow()->GetSize(), sf::FloatRect(0, 0, 1, 1), 0, 5, true);
+  m_camera = new CCamera(this, Game::instance.GetWindow()->GetSize(), sf::FloatRect(0, 0, 1, 1), 0, 1, true);
   AddComponent(m_camera);
 
 
   m_moveSpeed = 500;
   m_clampCamera = false;
+  m_mouseAnchor = sf::Vector2i(0,0);
 
   float hexRadius = data.floatData["HexRadius"];
 
@@ -54,23 +55,12 @@ sf::Vector2f MapCamera::CameraMouseMovement(float deltaTime)
 {
   sf::Vector2f newPos = m_transform.GetPosition();
 
-  if (InputManager::GetInstance()->ButtonPressed(sf::Mouse::Left))
+  if (InputManager::GetInstance()->ButtonDown(sf::Mouse::Left))
   {
-    m_mouseAnchor = InputManager::GetInstance()->GetMousePosition(0);
-    m_cameraAnchorPos = m_transform.GetPosition();
-    m_anchorActive = true;
+    newPos -= sf::Vector2f(InputManager::GetInstance()->GetMousePosition(0, false) - m_lastMousePos)*m_camera->GetZoom();
   }
 
-  if (InputManager::GetInstance()->ButtonReleased(sf::Mouse::Left))
-  {
-    m_anchorActive = false;
-  }
-
-  if (m_anchorActive == true && InputManager::GetInstance()->ButtonDown(sf::Mouse::Left))
-  {
-    newPos = m_cameraAnchorPos + sf::Vector2f(m_mouseAnchor - InputManager::GetInstance()->GetMousePosition(0));
-  }
-
+  m_lastMousePos = InputManager::GetInstance()->GetMousePosition(0, false);
   return newPos;
 }
 

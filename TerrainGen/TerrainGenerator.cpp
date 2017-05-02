@@ -27,6 +27,8 @@ TerrainGenerator::TerrainGenerator(InitialisationData data)
 
   GenerateTerrain(data.floatData["Seed"]);
   GenerateTexture();
+
+  OutputLog::GetInstance().AddLine(std::to_string(m_mapTexture.getTexture().getMaximumSize()));
 }
 
 
@@ -44,14 +46,14 @@ void TerrainGenerator::GenerateTerrain(int seed)
 {
   m_perlinNoise.SetSeed(seed);
 
-  m_perlinNoise.SetFrequency(4);        // How jagged the terrain is
+  m_perlinNoise.SetFrequency(1);        // How jagged the terrain is
 
   m_perlinNoise.SetLacunarity(1);       // How much extra random bits
   m_perlinNoise.SetPersistence(0.5);
 
   m_perlinNoise.SetOctaveCount(6);
 
-  float noiseScale = 55;
+  float noiseScale = 20;
 
   for (int y = 0; y < m_mapHeight; y++)
   {
@@ -59,7 +61,10 @@ void TerrainGenerator::GenerateTerrain(int seed)
     {
       float normalised = (m_perlinNoise.GetValue((float)x / noiseScale, (float)y / noiseScale, 0) + 1) / 2;
 
-      if (normalised > 1)
+	  if (normalised > 1)
+		  OutputLog::GetInstance().AddLine(std::to_string(m_perlinNoise.GetValue((float)x / noiseScale, (float)y / noiseScale, 0)));
+
+      if (normalised > 1.1)
       {
         m_terrain.push_back(5);
       }

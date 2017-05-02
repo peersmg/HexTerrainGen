@@ -12,6 +12,8 @@ private:
   bool m_clampCamera;
 
   sf::Vector2i m_mouseAnchor;
+  sf::Vector2i m_lastMousePos;
+
   sf::Vector2f m_cameraAnchorPos;
   bool m_anchorActive;
 public:

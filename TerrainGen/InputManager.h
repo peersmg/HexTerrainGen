@@ -43,7 +43,7 @@ public:
   std::vector<sf::Event> GetEvents();
 
   // Return the mouse position
-  sf::Vector2i GetMousePosition(int camera = 0);
+  sf::Vector2i GetMousePosition(int camera = 0, bool fromCamera = true);
 
   // Returns true if the mouse is over the specified rect
   bool MouseOver(sf::FloatRect Rect, int camera = 0);
