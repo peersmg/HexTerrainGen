@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F9912174-7C36-4683-8DAF-08A233B9F940}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>TerrainGen</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\Projects\SFML Engine\TerrainGen\TerrainGen\noise;D:\Projects\SFML Engine\TerrainGen\TerrainGen\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>D:\Projects\SFML Engine\TerrainGen\TerrainGen\SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-window-d.lib;sfml-graphics-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;sfml-main-d.lib;opengl32.lib;winmm.lib;gdi32.lib;freetype.lib;jpeg.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;ws2_32.lib;%(AdditionalDependencies);libnoise.lib</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;SFML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\Projects\SFML Engine\TerrainGen\TerrainGen\noise;D:\Projects\SFML Engine\TerrainGen\TerrainGen\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>sfml-window-s.lib;sfml-graphics-s.lib;sfml-audio-s.lib;sfml-network-s.lib;sfml-system-s.lib;sfml-main.lib;opengl32.lib;winmm.lib;gdi32.lib;freetype.lib;jpeg.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;ws2_32.lib;openal32.lib;%(AdditionalDependencies);libnoise.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\Projects\SFML Engine\TerrainGen\TerrainGen\SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="CAudio.h" />
+    <ClInclude Include="CCamera.h" />
+    <ClInclude Include="CDefaultParticleEmitter.h" />
+    <ClInclude Include="CDropdown.h" />
+    <ClInclude Include="CMyButton.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="CRectShape.h" />
+    <ClInclude Include="CSprite.h" />
+    <ClInclude Include="CText.h" />
+    <ClInclude Include="CTextfield.h" />
+    <ClInclude Include="DataTypes.h" />
+    <ClInclude Include="DefaultCamera.h" />
+    <ClInclude Include="DrawManager.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GUICamera.h" />
+    <ClInclude Include="GUIStyle.h" />
+    <ClInclude Include="HexMath.h" />
+    <ClInclude Include="icon.h" />
+    <ClInclude Include="InputManager.h" />
+    <ClInclude Include="MapCamera.h" />
+    <ClInclude Include="MenuManager.h" />
+    <ClInclude Include="ObjectFactory.h" />
+    <ClInclude Include="OutputLog.h" />
+    <ClInclude Include="Particle.h" />
+    <ClInclude Include="ResourceLoader.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="SDefault.h" />
+    <ClInclude Include="SplashScreen.h" />
+    <ClInclude Include="SSplash.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="STerrainSandbox.h" />
+    <ClInclude Include="TerrainGenerator.h" />
+    <ClInclude Include="Transform.h" />
+    <ClInclude Include="Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CAudio.cpp" />
+    <ClCompile Include="CCamera.cpp" />
+    <ClCompile Include="CDefaultParticleEmitter.cpp" />
+    <ClCompile Include="CDropdown.cpp" />
+    <ClCompile Include="CMyButton.cpp" />
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="CRectShape.cpp" />
+    <ClCompile Include="CSprite.cpp" />
+    <ClCompile Include="CText.cpp" />
+    <ClCompile Include="CTextfield.cpp" />
+    <ClCompile Include="DefaultCamera.cpp" />
+    <ClCompile Include="DrawManager.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GUICamera.cpp" />
+    <ClCompile Include="GUIStyle.cpp" />
+    <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MapCamera.cpp" />
+    <ClCompile Include="MenuManager.cpp" />
+    <ClCompile Include="ObjectFactory.cpp" />
+    <ClCompile Include="OutputLog.cpp" />
+    <ClCompile Include="Particle.cpp" />
+    <ClCompile Include="ResourceLoader.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="SDefault.cpp" />
+    <ClCompile Include="SplashScreen.cpp" />
+    <ClCompile Include="SSplash.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="STerrainSandbox.cpp" />
+    <ClCompile Include="TerrainGenerator.cpp" />
+    <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="Window.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
