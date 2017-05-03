@@ -11,12 +11,13 @@ private:
   sf::Color m_color;
   alignment m_alignment;
   sf::Font m_font;
+  int m_camera;
 
   sf::Text m_text;
 
 public:
-  CText(GameObject* pOwner, std::string text, sf::Vector2f position, int fontSize, std::string font, sf::Color Color, alignment alignment = alignment::TOPLEFT);
-  CText(GameObject* pOwner, std::string text, sf::Vector2f position, std::string style, int fontSize = 12, alignment alignment = alignment::TOPLEFT);
+  CText(GameObject* pOwner, std::string text, sf::Vector2f position, int fontSize, std::string font, sf::Color Color, alignment alignment = alignment::TOPLEFT, int camera = 0);
+  CText(GameObject* pOwner, std::string text, sf::Vector2f position, std::string style, int fontSize = 12, alignment alignment = alignment::TOPLEFT, int camera = 0);
   
   ~CText();
 

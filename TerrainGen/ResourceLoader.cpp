@@ -29,9 +29,12 @@ void ResourceLoader::LoadTextures()
   std::vector<std::string> textures;
 
   // Add images here
-  textures.push_back("resources/textures/Splashscreen.png");
-  textures.push_back("resources/textures/hex.png");
-  textures.push_back("resources/particles/circle.png");
+  textures.push_back("resources/textures/dirt.jpg");
+  textures.push_back("resources/textures/grass.jpg");
+  textures.push_back("resources/textures/rock.jpg");
+  textures.push_back("resources/textures/sand.jpg");
+  textures.push_back("resources/textures/snow.jpg");
+  textures.push_back("resources/textures/water.jpg");
 
   //////////////////
 

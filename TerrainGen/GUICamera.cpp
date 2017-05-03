@@ -19,9 +19,11 @@ GUICamera::GUICamera(InitialisationData data)
 {
   AddComponent(new CCamera(this, Game::instance.GetWindow()->GetSize()));
   
-  AddComponent(new CMyButton(this, "ReturnButton", "Return",
-    sf::FloatRect(Game::instance.GetWindow()->GetSize().x / 2, Game::instance.GetWindow()->GetSize().y - 20, 200, 30),
-    "DefaultStyle", 18, alignment::BOTTOMCENTER, 1));
+  AddComponent(new CMyButton(this, "ReturnButton", "Menu",
+    sf::FloatRect(50, Game::instance.GetWindow()->GetSize().y - 20, 200, 30),
+    "DefaultStyle", 18, alignment::BOTTOMLEFT, 1));
+
+  m_layer = 10;
 }
 
 

@@ -5,7 +5,12 @@
 class CRectShape : public Component
 {
 private:
-  sf::RectangleShape m_rectangle;
+  int m_camera;
+  alignment m_alignment;
+  sf::Color m_fillColor;
+  sf::Color m_outlineColor;
+  int m_outlineThickness;
+  sf::FloatRect m_rect;
 
 public:
 
@@ -15,7 +20,7 @@ public:
   * @param rect - Rectangle.
   * @param fillColor - Rectangle fill color.
   */
-  CRectShape(GameObject* pOwner, sf::FloatRect rect, sf::Color fillColor, float outlineThickness = 0, sf::Color outlineColor = sf::Color::Black);
+  CRectShape(GameObject* pOwner, sf::FloatRect rect, sf::Color fillColor, float outlineThickness = 0, sf::Color outlineColor = sf::Color::Black, alignment alignment = alignment::TOPLEFT, int camera = 0);
 
   /**
   * Destructor.

@@ -5,13 +5,15 @@
 
 #include "OutputLog.h"
 
-CTextfield::CTextfield(GameObject* pOwner, sf::Vector2f position, int width, int lines, std::string defaultText, std::string style, int fontSize, int charLimit, alignment alignment, int camera)
+CTextfield::CTextfield(GameObject* pOwner, sf::Vector2f position, int width, int lines, std::string placeholderText, std::string defaultText, std::string style, int fontSize, int charLimit, alignment alignment, int camera)
 {
   m_pOwner = pOwner;
   m_hasFocus = false;
 
-  m_text = "";
+  m_text = defaultText;
   m_defaultText = defaultText;
+
+  m_camera = camera;
 
   m_alignment = alignment;
   m_lineLimit = lines-1;
@@ -59,12 +61,12 @@ void CTextfield::Update(float deltaTime)
     m_caratBlinkSpeed = 1.6;
   }
 
-  if (InputManager::GetInstance()->MouseOver(m_rect) && InputManager::GetInstance()->ButtonDown(sf::Mouse::Left))
+  if (InputManager::GetInstance()->MouseOver(m_rect, m_camera) && InputManager::GetInstance()->ButtonDown(sf::Mouse::Left))
   {
     m_hasFocus = true;
     m_caratBlinkSpeed = 0.53;
   }
-  else if (!InputManager::GetInstance()->MouseOver(m_rect) && InputManager::GetInstance()->ButtonDown(sf::Mouse::Left))
+  else if (!InputManager::GetInstance()->MouseOver(m_rect, m_camera) && InputManager::GetInstance()->ButtonDown(sf::Mouse::Left))
   {
     m_hasFocus = false;
   }
@@ -80,27 +82,27 @@ void CTextfield::Draw()
 {
   if (m_hasFocus)
   {
-    DrawManager::GetInstance().DrawRect(m_rect, m_style.backgroundCol, m_style.outlineSize, m_style.focusOutlineCol);
+    DrawManager::GetInstance().DrawRect(m_rect, m_style.backgroundCol, m_style.outlineSize, m_style.focusOutlineCol, alignment::TOPLEFT, m_camera);
   }
   else
   {
-    DrawManager::GetInstance().DrawRect(m_rect, m_style.backgroundCol, m_style.outlineSize, m_style.normalOutlineCol);
+    DrawManager::GetInstance().DrawRect(m_rect, m_style.backgroundCol, m_style.outlineSize, m_style.normalOutlineCol, alignment::TOPLEFT, m_camera);
   }
 
   if (m_text == "" && !m_hasFocus)
   {
     // Draw default text
-    DrawManager::GetInstance().DrawText(m_defaultText, sf::Vector2f(m_rect.left, m_rect.top), m_fontSize, m_style.font, m_style.placeholderTextCol);
+    DrawManager::GetInstance().DrawText(m_defaultText, sf::Vector2f(m_rect.left, m_rect.top), m_fontSize, m_style.font, m_style.placeholderTextCol, alignment::TOPLEFT, m_camera);
   }
   else if (m_text != "" && !m_hasFocus)
   {
     // Draw m_text
-    DrawManager::GetInstance().DrawText(m_text, sf::Vector2f(m_rect.left, m_rect.top), m_fontSize, m_style.font, m_style.placeholderTextCol);
+    DrawManager::GetInstance().DrawText(m_text, sf::Vector2f(m_rect.left, m_rect.top), m_fontSize, m_style.font, m_style.placeholderTextCol, alignment::TOPLEFT, m_camera);
   }
   else
   {
     // Draw m_text with blinking carat at endn(or clicked point)
-    DrawManager::GetInstance().DrawText(m_text, sf::Vector2f(m_rect.left, m_rect.top), m_fontSize, m_style.font, m_style.placeholderTextCol);
+    DrawManager::GetInstance().DrawText(m_text, sf::Vector2f(m_rect.left, m_rect.top), m_fontSize, m_style.font, m_style.placeholderTextCol, alignment::TOPLEFT, m_camera);
     
     sf::Text theText = sf::Text(m_text.substr(m_prevLinesCount, m_caretCharacterPosition), m_style.font, m_fontSize);
     sf::Text caretText = sf::Text(" | ", m_style.font, m_fontSize);
@@ -109,7 +111,7 @@ void CTextfield::Draw()
 
     if (m_caratBlinkSpeed <= 0.53)
     {
-      DrawManager::GetInstance().DrawText("|", m_caretVectorPosition, m_fontSize, m_style.font, sf::Color(100, 100, 100));
+      DrawManager::GetInstance().DrawText("|", m_caretVectorPosition, m_fontSize, m_style.font, sf::Color(100, 100, 100), alignment::TOPLEFT, m_camera);
     }
   }
 }
@@ -117,6 +119,11 @@ void CTextfield::Draw()
 std::string CTextfield::GetText()
 {
   return m_text;
+}
+
+void CTextfield::SetText(std::string text)
+{
+  m_text = text;
 }
 
 void CTextfield::CheckBackspace()

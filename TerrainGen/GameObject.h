@@ -43,6 +43,6 @@ public:
   void SetActive(bool active);
   bool GetActive();
 
-  void AddComponent(Component* newComponent);
+  Component* AddComponent(Component* newComponent);
 };
 

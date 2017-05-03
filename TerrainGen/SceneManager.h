@@ -44,7 +44,7 @@ public:
   * @param sceneId - The name of the scene to set as the current scene.
   * @param data - Initialisation data.
   */
-  void SetScene(std::string sceneId, InitialisationData data);
+  void SetScene(std::string sceneId, InitialisationData data = InitialisationData());
 
   /**
   * Gets a pointer to the specified scene.

@@ -21,19 +21,10 @@ MapCamera::MapCamera(InitialisationData data)
   m_camera = new CCamera(this, Game::instance.GetWindow()->GetSize(), sf::FloatRect(0, 0, 1, 1), 0, 5, true);
   AddComponent(m_camera);
 
-
   m_moveSpeed = 500;
   m_clampCamera = false;
-  m_mouseAnchor = sf::Vector2i(0,0);
 
-  float hexRadius = data.floatData["HexRadius"];
-
-  float mapWidth = data.floatData["Width"];
-  float mapHeight = data.floatData["Height"];
-
-  m_mapSize = sf::Vector2f(HexMath::GetMapSize(hexRadius, mapWidth, mapHeight));
-
-  m_transform.SetPosition(sf::Vector2f((m_mapSize.x / 2) - Game::instance.GetWindow()->GetSize().x / 2, (m_mapSize.y / 2) - Game::instance.GetWindow()->GetSize().y / 2));
+  m_transform.SetPosition(sf::Vector2f(0, 0));
 }
 
 MapCamera::~MapCamera()

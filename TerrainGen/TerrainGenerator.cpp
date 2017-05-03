@@ -4,8 +4,14 @@
 #include "ResourceLoader.h"
 #include "Game.h"
 #include "HexMath.h"
+#include "InputManager.h"
 
 #include "CRectShape.h"
+#include "CMyButton.h"
+#include "CTerrainGenerator.h"
+#include "CRectShape.h"
+#include "CTextfield.h"
+#include "CText.h"
 #include "DrawManager.h"
 
 GameObject* CreateTerrainGenerator(InitialisationData data)
@@ -19,16 +25,38 @@ const bool bTerrainGenerator = ObjectFactory::GetInstance().Register("TerrainGen
 
 TerrainGenerator::TerrainGenerator(InitialisationData data)
 {
-  m_mapWidth = data.floatData["Width"];
-  m_mapHeight = data.floatData["Height"];
 
-  m_hexRadius = data.floatData["HexRadius"];
-  m_hexInnerRadius = HexMath::GetInnerRadius(m_hexRadius);
+  m_terrainGenerator = new CTerrainGenerator(this);
+  AddComponent(m_terrainGenerator);
 
-  GenerateTerrain(data.floatData["Seed"]);
-  GenerateTexture();
+  m_terrainGenerator->SetHexRadius(40);
+  m_terrainGenerator->SetHexMapSize(sf::Vector2i(100, 50));
 
-  OutputLog::GetInstance().AddLine(std::to_string(m_mapTexture.getTexture().getMaximumSize()));
+  m_terrainGenerator->SetHeightSeed(0);
+  m_terrainGenerator->SetHeightFrequency(4);
+  m_terrainGenerator->SetHeightLacunarity(1);
+  m_terrainGenerator->SetHeightPersistence(0.05);
+  m_terrainGenerator->SetHeightOctaveCount(4);
+
+  m_terrainGenerator->SetHeightNoiseScale(45);
+
+  m_terrainGenerator->CreateTerrain();  
+
+  m_rectShape = AddComponent(new CRectShape(this, sf::FloatRect(Game::instance.GetWindow()->GetSize().x, 0, 350, Game::instance.GetWindow()->GetSize().y),
+               sf::Color(200, 10, 10, 100), 2, sf::Color::Black, alignment::TOPRIGHT, 1));
+
+  m_generateButton = AddComponent(new CMyButton(this, "GenerateTerrain", "Generate Terrain",
+    sf::FloatRect(Game::instance.GetWindow()->GetSize().x - 50, Game::instance.GetWindow()->GetSize().y - 20, 200, 30),
+    "DefaultStyle", 18, alignment::BOTTOMRIGHT, 1));
+
+  m_seedInput = new CTextfield(this, sf::Vector2f(Game::instance.GetWindow()->GetSize().x-250, 50), 100, 1, "Seed", "0","DefaultStyle", 18, 8, alignment::TOPLEFT, 1);
+  AddComponent(m_seedInput);
+
+  m_seedText = AddComponent(new CText(this, "Seed: ", sf::Vector2f(Game::instance.GetWindow()->GetSize().x - 250, 50), "DefaultStyle", 18, alignment::TOPRIGHT, 1));
+
+  m_randomizeSeedBtn = AddComponent(new CMyButton(this, "RandomizeSeed", "Randomize",
+    sf::FloatRect(Game::instance.GetWindow()->GetSize().x - 120, 50, 110, 30),
+    "DefaultStyle", 18, alignment::TOPLEFT, 1));
 }
 
 
@@ -38,148 +66,33 @@ TerrainGenerator::~TerrainGenerator()
 
 void TerrainGenerator::Update(float deltaTime)
 {
-  sf::Sprite mapSprite(m_mapTexture.getTexture());
-  Game::instance.GetWindow()->Draw(mapSprite, 0);
-}
-
-void TerrainGenerator::GenerateTerrain(int seed)
-{
-  m_perlinNoise.SetSeed(seed);
-
-  m_perlinNoise.SetFrequency(1.5);        // How jagged the terrain is
-
-  m_perlinNoise.SetLacunarity(1);       // How much extra random bits
-  m_perlinNoise.SetPersistence(0.5);
-
-  m_perlinNoise.SetOctaveCount(6);
-
-  float noiseScale = 30;
-
-  float maxValue = -100;
-  float minValue = 100;
-
-  for (int y = 0; y < m_mapHeight; y++)
+  if (InputManager::GetInstance()->KeyPressed(sf::Keyboard::C))
   {
-    for (int x = 0; x < m_mapWidth; x++)
-    {
-      if (m_perlinNoise.GetValue((float)x / noiseScale, (float)y / noiseScale, 0) < minValue)
-      {
-        minValue = m_perlinNoise.GetValue((float)x / noiseScale, (float)y / noiseScale, 0);
-      }
-      else if (m_perlinNoise.GetValue((float)x / noiseScale, (float)y / noiseScale, 0) > maxValue)
-      {
-        maxValue = m_perlinNoise.GetValue((float)x / noiseScale, (float)y / noiseScale, 0);
-      }
-    }
-  }
-
-  for (int y = 0; y < m_mapHeight; y++)
-  {
-    for (int x = 0; x < m_mapWidth; x++)
-    {
-      float resultVal = 0 + ((1 - 0) / (maxValue - minValue)) * (m_perlinNoise.GetValue((float)x / noiseScale, (float)y / noiseScale, 0) - minValue);
-
-      if (resultVal > 1 || resultVal < 0)
-        OutputLog::GetInstance().AddLine(std::to_string(resultVal));
-
-      if (resultVal > 0.9)
-      {
-        m_terrain.push_back(5);
-      }
-      else if (resultVal > 0.8)
-      {
-        m_terrain.push_back(4);
-      }
-      else if (resultVal > 0.5)
-      {
-        m_terrain.push_back(3);
-      }
-      else if (resultVal > 0.45)
-      {
-        m_terrain.push_back(2);
-      }
-      else if (resultVal > 0.4)
-      {
-        m_terrain.push_back(1);
-      }
-      else
-      {
-        m_terrain.push_back(0);
-      }
-    }
-
-    if (ResourceLoader::GetInstance().isTextureLoaded("resources/textures/hex.png"))
-    {
-      m_texture = ResourceLoader::GetInstance().GetTexture("resources/textures/hex.png");
-    }
-    else
-    {
-      OutputLog::GetInstance().AddLine("Terrain Texture failed to load!", MessageType::ERROR);
-    }
+    m_generateButton->SetDormant(!m_generateButton->GetDormant());
+    m_rectShape->SetDormant(!m_rectShape->GetDormant());
+    m_seedText->SetDormant(!m_seedText->GetDormant());
+    m_seedInput->SetDormant(!m_seedInput->GetDormant());
+    m_randomizeSeedBtn->SetDormant(!m_randomizeSeedBtn->GetDormant());
   }
 }
 
-void TerrainGenerator::GenerateTexture()
+void TerrainGenerator::ButtonPressed(std::string buttonId)
 {
-  sf::Vector2i mapSize = HexMath::GetMapSize(m_hexRadius, m_mapWidth, m_mapHeight);
-  m_mapTexture.create(mapSize.x, mapSize.y);
-
-  //m_mapTexture.clear(sf::Color::Red);
-
-  sf::Color col = sf::Color::Red;
-
-  for (int y = 0; y < m_mapHeight; y++)
+  if (buttonId == "GenerateTerrain")
   {
-    for (int x = 0; x < m_mapWidth; x++)
-    {
-      if (m_terrain[index(x,y)] == 0)
-      {
-        col = sf::Color(0, 13, 206);
-      }
-      else if (m_terrain[index(x, y)] == 1)
-      {
-        col = sf::Color(0, 33, 226);
-      }
-      else if (m_terrain[index(x, y)] == 2)
-      {
-        col = sf::Color(200, 200, 44);
-      }
-      else if (m_terrain[index(x, y)] == 3)
-      {
-        col = sf::Color(16, 183, 11);
-      }
-      else if (m_terrain[index(x, y)] == 4)
-      {
-        col = sf::Color(9, 76, 63);
-      }
-      else if (m_terrain[index(x, y)] == 5)
-      {
-        col = sf::Color(255, 255, 255);
-      }
+    m_terrainGenerator->SetHexRadius(40);
+    m_terrainGenerator->SetHexMapSize(sf::Vector2i(100, 50));
 
-      sf::Vector2f position;
+    m_terrainGenerator->SetHeightSeed(std::atoi(m_seedInput->GetText().c_str()));
+    m_terrainGenerator->SetHeightFrequency(3);
+    m_terrainGenerator->SetHeightLacunarity(2);
+    m_terrainGenerator->SetHeightPersistence(0.4);
+    m_terrainGenerator->SetHeightOctaveCount(4);
 
-      position = sf::Vector2f(((m_hexInnerRadius * 2) * x) + (m_hexInnerRadius*(y % 2)), ((m_hexRadius * 2) * y) - ((m_hexRadius / 2)*y));
-
-      sf::CircleShape hex;
-
-      hex.setRadius(m_hexRadius);
-      hex.setPosition(position);
-      hex.setPointCount(6);
-      hex.setFillColor(col);
-
-      hex.setOutlineColor(sf::Color::White);
-      //hex.setOutlineThickness(1);
-
-      m_mapTexture.draw(hex);
-    }
+    m_terrainGenerator->CreateTerrain();
   }
- 
-  m_mapTexture.setSmooth(true);
-  m_mapTexture.display();
-}
-
-int TerrainGenerator::index(int x, int y)
-{
-  return (m_mapWidth * y) + x;
+  else if (buttonId == "RandomizeSeed")
+  {
+    m_seedInput->SetText(std::to_string(rand()%99999999));
+  }
 }

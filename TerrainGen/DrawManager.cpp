@@ -24,7 +24,7 @@ void DrawManager::DrawRect(sf::FloatRect rect, sf::Color fillColor, float outlin
   Game::instance.GetWindow()->Draw(rectangle, camera);
 }
 
-void DrawManager::DrawText(std::string text, sf::Vector2f position, int fontSize, std::string font, sf::Color Color, alignment alignment)
+void DrawManager::DrawText(std::string text, sf::Vector2f position, int fontSize, std::string font, sf::Color Color, alignment alignment, int camera)
 {
   sf::Font theFont;
 
@@ -44,10 +44,10 @@ void DrawManager::DrawText(std::string text, sf::Vector2f position, int fontSize
 
   theText.setPosition(AlignPosition(sf::FloatRect(position.x, position.y, theText.getGlobalBounds().width, theText.getGlobalBounds().height), alignment));
 
-  Game::instance.GetWindow()->Draw(theText);
+  Game::instance.GetWindow()->Draw(theText, camera);
 }
 
-void DrawManager::DrawText(std::string text, sf::Vector2f position, int fontSize, sf::Font font, sf::Color Color, alignment alignment)
+void DrawManager::DrawText(std::string text, sf::Vector2f position, int fontSize, sf::Font font, sf::Color Color, alignment alignment, int camera)
 {
   sf::Text theText = sf::Text(text, font);
 
@@ -56,7 +56,7 @@ void DrawManager::DrawText(std::string text, sf::Vector2f position, int fontSize
 
   theText.setPosition(AlignPosition(sf::FloatRect(position.x, position.y, theText.getGlobalBounds().width, theText.getGlobalBounds().height), alignment));
 
-  Game::instance.GetWindow()->Draw(theText);
+  Game::instance.GetWindow()->Draw(theText, camera);
 }
 
 sf::Vector2f DrawManager::AlignPosition(sf::FloatRect rect, alignment theAlignment)

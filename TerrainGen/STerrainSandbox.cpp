@@ -17,13 +17,6 @@ void STerrainSandbox::LoadScene(InitialisationData data)
   OutputLog::GetInstance().AddLine("Loading Terrain sandbox...", MessageType::MESSAGE);
 
   InitialisationData terrainData;
-  terrainData.floatData["Width"] = data.floatData["Width"];
-  terrainData.floatData["Height"] = data.floatData["Height"];
-
-  terrainData.floatData["HexRadius"] = data.floatData["HexRadius"];
-
-  terrainData.floatData["Seed"] = data.floatData["Seed"];
-
   terrainData.scene = "TerrainSandbox";
 
   GameObject* mapCamera = ObjectFactory::GetInstance().Spawn("MapCamera", terrainData);

@@ -12,6 +12,7 @@
 #include "Component.h"
 #include "ObjectFactory.h"
 #include "icon.h"
+#include <time.h>
 
 Game::Game()
 {
@@ -26,6 +27,8 @@ void Game::Start()
   {
     return;
   }
+
+  srand(time(NULL));
 
   m_mainWindow = new Window("Game Title", sf::Vector2i(1228, 768), false, sf::Color(0, 13, 206));
   m_mainWindow->GetRenderWindow()->setIcon(sfml_icon.width, sfml_icon.height, sfml_icon.pixel_data);

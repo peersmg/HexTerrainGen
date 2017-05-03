@@ -129,6 +129,12 @@
     <ClInclude Include="HexMath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CTerrainGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HexInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CAudio.cpp">
@@ -231,6 +237,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MapCamera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CTerrainGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HexInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

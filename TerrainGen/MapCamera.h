@@ -11,7 +11,6 @@ private:
   float m_moveSpeed;
   bool m_clampCamera;
 
-  sf::Vector2i m_mouseAnchor;
   sf::Vector2i m_lastMousePos;
 
   sf::Vector2f m_cameraAnchorPos;

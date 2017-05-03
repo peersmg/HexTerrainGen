@@ -32,6 +32,7 @@ public:
   void Initialise();
 
   void AddLine(std::string text, MessageType type = MessageType::MESSAGE);
+  void AddLine(float value, MessageType type = MessageType::MESSAGE);
 
   void Draw();
 

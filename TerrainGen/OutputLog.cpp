@@ -72,6 +72,44 @@ void OutputLog::AddLine(std::string text, MessageType type)
 //#endif
 }
 
+void OutputLog::AddLine(float value, MessageType type)
+{
+  //#ifndef NDEBUG
+  OutputInfo info;
+
+  std::string text = std::to_string(value);
+
+  text.erase(std::remove(text.begin(), text.end(), '\n'), text.end());
+
+  info.time = GetFormatTime();
+  info.text = text;
+  info.type = type;
+  m_log.push_back(info);
+
+  if (info.type != MessageType::MESSAGE)
+  {
+    m_errorLog.push_back(info);
+  }
+
+  switch (type)
+  {
+  case MessageType::MESSAGE:
+    text = "[" + info.time + "]\tMessage: " + text;
+    break;
+  case MessageType::ERROR:
+    text = "[" + info.time + "]\tERROR: " + text;
+    break;
+  case MessageType::FATAL_ERROR:
+    text = "[" + info.time + "]\tFATAL ERROR: " + text;
+    break;
+  default:
+    break;
+  }
+
+  m_logFile << text << "\n";
+  //#endif
+}
+
 Window* OutputLog::GetWindow()
 {
   return m_window;

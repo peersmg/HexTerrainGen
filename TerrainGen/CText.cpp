@@ -5,7 +5,7 @@
 
 #include "OutputLog.h"
 
-CText::CText(GameObject* pOwner, std::string text, sf::Vector2f position, int fontSize, std::string font, sf::Color Color, alignment alignment)
+CText::CText(GameObject* pOwner, std::string text, sf::Vector2f position, int fontSize, std::string font, sf::Color Color, alignment alignment, int camera)
 {
   if (ResourceLoader::GetInstance().isFontLoaded(font))
   {
@@ -18,6 +18,7 @@ CText::CText(GameObject* pOwner, std::string text, sf::Vector2f position, int fo
 
   m_pOwner = pOwner;
 
+  m_camera = camera;
   m_textValue = text;
   m_position = position;
   m_fontSize = fontSize;
@@ -31,7 +32,7 @@ CText::CText(GameObject* pOwner, std::string text, sf::Vector2f position, int fo
   SetPosition(m_position);
 }
 
-CText::CText(GameObject* pOwner, std::string text, sf::Vector2f position, std::string style, int fontSize, alignment alignment)
+CText::CText(GameObject* pOwner, std::string text, sf::Vector2f position, std::string style, int fontSize, alignment alignment, int camera)
 {
   TextStyle textStyle = ResourceLoader::GetInstance().GetStyle(style).GetTextStyle();
 
@@ -39,6 +40,7 @@ CText::CText(GameObject* pOwner, std::string text, sf::Vector2f position, std::s
 
   m_pOwner = pOwner;
 
+  m_camera = camera;
   m_textValue = text;
   m_position = position;
   m_fontSize = fontSize;
@@ -58,7 +60,7 @@ CText::~CText()
 
 void CText::Draw()
 {
-  Game::instance.GetWindow()->Draw(m_text);
+  Game::instance.GetWindow()->Draw(m_text, m_camera);
 }
 
 void CText::SetText(std::string newText)

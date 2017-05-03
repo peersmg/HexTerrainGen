@@ -66,7 +66,8 @@ std::vector<Component*> GameObject::GetComponents()
   return m_components;
 }
 
-void GameObject::AddComponent(Component* newComponent)
+Component* GameObject::AddComponent(Component* newComponent)
 {
   m_components.push_back(newComponent);
+  return newComponent;
 }

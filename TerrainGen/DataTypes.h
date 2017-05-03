@@ -3,6 +3,14 @@
 #include <string>
 #include "Transform.h"
 
+///// Game Info
+
+enum class HexType {DEEP_WATER, SHALLOW_WATER, SAND, GRASS, TUNDRA, ICE, SNOW, ROCK, SWAMP};
+
+enum class SpecialHexType{NONE, WATER_SOURCE, LAVA_SOURCE};
+
+
+//
 // Alignment enum used for text
 enum class alignment { TOPLEFT, TOPRIGHT, TOPCENTER, MIDDLELEFT, MIDDLERIGHT, MIDDLECENTER, BOTTOMLEFT, BOTTOMRIGHT, BOTTOMCENTER };
 

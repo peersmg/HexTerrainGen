@@ -28,8 +28,10 @@ private:
   int m_caretCharacterPosition;
   int m_caretLine;
 
+  int m_camera;
+
 public:
-  CTextfield(GameObject* pOwner, sf::Vector2f position, int width, int lines, std::string defaultText, std::string style, int fontSize = 12, int charLimit = 0, 
+  CTextfield(GameObject* pOwner, sf::Vector2f position, int width, int lines, std::string placeholderText, std::string defaultText, std::string style, int fontSize = 12, int charLimit = 0,
              alignment alignment = alignment::TOPLEFT, int camera = 0);
 
   ~CTextfield();
@@ -38,6 +40,7 @@ public:
   void Draw() override;
 
   std::string GetText();
+  void SetText(std::string text);
 
   void CheckBackspace();
   void CheckTextInput();

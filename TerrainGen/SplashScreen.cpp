@@ -39,7 +39,7 @@ SplashScreen::SplashScreen()
   AddComponent(m_buttonSound);
 
   m_nameTextfield = new CTextfield(this, sf::Vector2f(Game::instance.GetWindow()->GetSize().x / 2, Game::instance.GetWindow()->GetSize().y / 2), 500,
-    1, "Enter Your Name...", "DefaultStyle", 22, 0, alignment::MIDDLECENTER);
+    1, "Enter Your Name...", "", "DefaultStyle", 22, 0, alignment::MIDDLECENTER);
   AddComponent(m_nameTextfield);
 
   std::vector<std::string> options;
