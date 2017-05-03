@@ -45,6 +45,7 @@ void Window::Display()
 
 void Window::ResetWindow()
 {
+  
   if (m_fullScreen)
   {
     m_window->create(sf::VideoMode::getFullscreenModes()[0], m_title, sf::Style::Titlebar | sf::Style::Close | sf::Style::Fullscreen);

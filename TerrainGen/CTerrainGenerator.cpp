@@ -108,6 +108,7 @@ void CTerrainGenerator::GenerateTextures()
   hex.setPointCount(6);
 
   sf::RenderTexture renderTexture;
+  renderTexture.setSmooth(true);
   renderTexture.create(mapSize.x, mapSize.y);
 
   for (int y = 0; y < m_mapHexSize.y; y++)
@@ -156,7 +157,6 @@ void CTerrainGenerator::GenerateTextures()
       renderTexture.draw(hex);
     }
   }
-
   renderTexture.display();
 
   m_textureChunks.push_back(renderTexture.getTexture());
