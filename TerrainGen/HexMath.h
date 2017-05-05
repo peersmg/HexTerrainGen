@@ -12,6 +12,6 @@ public:
   {
     float innerRadius = GetInnerRadius(radius);
 
-    return sf::Vector2i((float)mapWidth*innerRadius * 2, ((float)mapHeight * radius * 2) - ((radius / 2)*(mapHeight-1)));
+    return sf::Vector2i(((float)mapWidth*innerRadius * 2) + innerRadius, ((float)mapHeight * radius * 2) - ((radius / 2)*(mapHeight - 1)));
   }
 };

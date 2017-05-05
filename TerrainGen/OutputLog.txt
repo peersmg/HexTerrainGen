@@ -3,8 +3,23 @@
 [00:00:00]	Message: Loading Default Scene...
 [00:00:00]	Message: Menu Started
 [00:00:00]	Message: Menu Finished Starting
-[00:00:02]	Message: Button Pressed
-[00:00:02]	Message: Setting new scene
-[00:00:02]	Message: Loading Terrain sandbox...
-[00:00:03]	Message: Active is false unload scene
-[00:00:03]	Message: Unloading scene...
+[00:00:03]	Message: Button Pressed
+[00:00:03]	Message: Setting new scene
+[00:00:03]	Message: Loading Terrain sandbox...
+[00:00:06]	Message: 200.000000
+[00:00:06]	Message: Active is false unload scene
+[00:00:06]	Message: Unloading scene...
+[00:00:25]	Message: 200.000000
+[00:00:39]	Message: 200.000000
+[00:00:43]	Message: 200.000000
+[00:00:48]	Message: 200.000000
+[00:01:00]	Message: 200.000000
+[00:01:05]	Message: 200.000000
+[00:01:20]	Message: 200.000000
+[00:01:27]	Message: Setting new scene
+[00:01:27]	Message: Loading Default Scene...
+[00:01:27]	Message: Menu Started
+[00:01:27]	Message: Menu Finished Starting
+[00:01:27]	ERROR: Cant set camera, camera does not exist!
+[00:01:27]	Message: Active is false unload scene
+[00:01:27]	Message: Unloading scene...

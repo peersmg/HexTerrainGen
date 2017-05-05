@@ -30,7 +30,7 @@ TerrainGenerator::TerrainGenerator(InitialisationData data)
   AddComponent(m_terrainGenerator);
 
   m_terrainGenerator->SetHexRadius(40);
-  m_terrainGenerator->SetHexMapSize(sf::Vector2i(100, 50));
+  m_terrainGenerator->SetHexMapSize(sf::Vector2i(200, 100));
 
   m_terrainGenerator->SetHeightSeed(0);
   m_terrainGenerator->SetHeightFrequency(4);
@@ -38,7 +38,7 @@ TerrainGenerator::TerrainGenerator(InitialisationData data)
   m_terrainGenerator->SetHeightPersistence(0);
   m_terrainGenerator->SetHeightOctaveCount(6);
 
-  m_terrainGenerator->SetHeightNoiseScale(55);
+  m_terrainGenerator->SetHeightNoiseScale(100);
 
   m_terrainGenerator->CreateTerrain();  
 
@@ -81,7 +81,7 @@ void TerrainGenerator::ButtonPressed(std::string buttonId)
   if (buttonId == "GenerateTerrain")
   {
     m_terrainGenerator->SetHexRadius(40);
-    m_terrainGenerator->SetHexMapSize(sf::Vector2i(100, 50));
+    m_terrainGenerator->SetHexMapSize(sf::Vector2i(200, 100));
 
     m_terrainGenerator->SetHeightSeed(std::atoi(m_seedInput->GetText().c_str()));;
     m_terrainGenerator->SetHeightFrequency(4);
@@ -89,7 +89,7 @@ void TerrainGenerator::ButtonPressed(std::string buttonId)
     m_terrainGenerator->SetHeightPersistence(0);
     m_terrainGenerator->SetHeightOctaveCount(6);
 
-    m_terrainGenerator->SetHeightNoiseScale(55);
+    m_terrainGenerator->SetHeightNoiseScale(100);
 
     m_terrainGenerator->CreateTerrain();
   }

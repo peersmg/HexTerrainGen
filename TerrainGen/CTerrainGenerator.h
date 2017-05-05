@@ -12,7 +12,8 @@ private:
   noise::module::Perlin m_floraNoise;         // If an area has forests (or jungle), affected by height and temperature
   noise::module::Perlin m_featureNoise;       // Special feature noise. e.g. if a hight feature value crosses with a high terrain value volcano is created
 
-  std::vector<sf::Texture> m_textureChunks;
+  //std::vector<sf::Texture> m_textureChunks;
+  sf::Texture* m_textureChunkArray;
   sf::Sprite m_texture;
 
   std::vector<HexInfo> m_terrain;

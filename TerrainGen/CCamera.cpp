@@ -14,7 +14,7 @@ CCamera::CCamera(GameObject* pOwner, sf::Vector2i size, sf::FloatRect viewport, 
   m_zoomable = zoomable;
 
   m_maxZoom = 0.5;
-  m_minZoom = 10;
+  m_minZoom = 100;
 
   m_view.reset(sf::FloatRect(m_pOwner->GetTransform().GetPosition().x + (m_pOwner->GetTransform().GetOrigin().x + m_viewport.width / 2),
     m_pOwner->GetTransform().GetPosition().y + (m_pOwner->GetTransform().GetOrigin().y + m_viewport.height / 2),

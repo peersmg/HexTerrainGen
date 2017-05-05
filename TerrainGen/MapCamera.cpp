@@ -18,7 +18,7 @@ const bool bMapCamera = ObjectFactory::GetInstance().Register("MapCamera", Creat
 
 MapCamera::MapCamera(InitialisationData data)
 {
-  m_camera = new CCamera(this, Game::instance.GetWindow()->GetSize(), sf::FloatRect(0, 0, 1, 1), 0, 5, true);
+  m_camera = new CCamera(this, Game::instance.GetWindow()->GetSize(), sf::FloatRect(0, 0, 1, 1), 0, 10, true);
   AddComponent(m_camera);
 
   m_moveSpeed = 500;
